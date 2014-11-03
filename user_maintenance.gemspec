@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'devise', '3.4.1'
   s.add_dependency 'simple_roles', '~> 0.0.12'
+  s.add_dependency 'haml-rails', '~> 0.5.3'
 end
