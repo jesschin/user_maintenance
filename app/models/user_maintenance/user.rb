@@ -5,6 +5,8 @@ module UserMaintenance
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
 
+    simple_roles
+
     validates :first_name, :last_name, :presence => true
 
     def full_name

@@ -5,6 +5,7 @@ PATH
       devise (= 3.4.1)
       pg (~> 0.17.1)
       rails (~> 4.1.7)
+      simple_roles (~> 0.0.12)
 
 GEM
   remote: https://rubygems.org/
@@ -77,6 +78,8 @@ GEM
     rake (10.3.2)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
+    simple_roles (0.0.12)
+      activerecord (>= 3.1.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
