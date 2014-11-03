@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.1.7'
   s.add_dependency 'pg', '~> 0.17.1'
 
+  s.add_dependency 'devise', '3.2.4'
 end
