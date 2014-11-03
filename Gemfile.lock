@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     user_maintenance (0.0.1)
-      devise (= 3.2.4)
+      devise (= 3.4.1)
       pg (~> 0.17.1)
       rails (~> 4.1.7)
 
@@ -36,12 +36,13 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    bcrypt (3.1.7)
+    bcrypt (3.1.9)
     builder (3.2.2)
-    devise (3.2.4)
+    devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
+      responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
@@ -74,6 +75,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    responders (1.1.1)
+      railties (>= 3.2, < 4.2)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
