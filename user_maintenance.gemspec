@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1.7"
   s.add_dependency 'pg', '~> 0.17.1'
-
   s.add_dependency 'devise', '3.4.1'
-  s.add_dependency 'simple_roles', '~> 0.0.12'
+  s.add_dependency 'role_model', '~> 0.8.1'
+  s.add_dependency 'cancancan', '~> 1.9.2'
   s.add_dependency 'haml-rails', '~> 0.5.3'
 end

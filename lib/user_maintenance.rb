@@ -1,7 +1,8 @@
 require 'devise'
-require 'simple_roles'
 require 'user_maintenance/engine'
 require 'haml-rails'
+require 'role_model'
+require 'cancancan'
 
 module UserMaintenance
 end
