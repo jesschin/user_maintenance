@@ -2,62 +2,115 @@ require_dependency "user_maintenance/application_controller"
 
 module UserMaintenance
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource
 
-    # GET /users
     def index
-      puts "lalalala"
-      @users = User.all
+      @users = UserMaintenance::User.where.not(:id => current_user.id)
     end
 
-    # GET /users/1
     def show
+      @user ||= current_user
     end
 
-    # GET /users/new
     def new
-      @user = User.new
     end
 
-    # GET /users/1/edit
-    def edit
-    end
-
-    # POST /users
     def create
-      @user = User.new(user_params)
+      @user = UserMaintenance::User.new(create_params)
+      @user.password_last_updated_by = current_user
 
       if @user.save
-        redirect_to @user, notice: 'User was successfully created.'
+        redirect_to @user
       else
-        render :new
+        render 'new'
       end
     end
 
-    # PATCH/PUT /users/1
+    def edit
+      @user ||= current_user
+    end
+
     def update
-      if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
+      @user ||= current_user
+
+      if @user.update_attributes(update_params)
+        redirect_to((can? :update_profile, @user) ? profile_path : user_path(@user))
       else
-        render :edit
+        render 'edit'
       end
     end
 
-    # DELETE /users/1
-    def destroy
-      @user.destroy
-      redirect_to users_url, notice: 'User was successfully destroyed.'
+    def enable
+      @user = UserMaintenance::User.find(params[:user_id])
+      authorize! :enable, @user
+
+      if @user.update(:enabled => !@user.enabled)
+        redirect_to users_path
+      else
+        render 'show'
+      end
+    end
+
+    def edit_password
+    end
+
+    def update_password
+      current_user.password_last_updated_by = current_user
+
+      if current_user.update_with_password(update_password_params)
+        sign_in current_user, :bypass => true
+        redirect_to profile_path
+      else
+        render 'edit_password'
+      end
+    end
+
+    def resetting_password
+      @user = UserMaintenance::User.find(params[:user_id])
+      authorize! :resetting_password, @user
+    end
+
+    def reset_password
+      @user = UserMaintenance::User.find(params[:user_id])
+      authorize! :reset_password, @user
+      @user.password_last_updated_by = current_user
+
+      if @user.update_attributes(reset_password_params)
+        redirect_to @user
+      else
+        render 'resetting_password'
+      end
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_user
-        @user = User.find(params[:id])
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def user_params
-        params[:user]
-      end
+    def create_params
+      params.require(:user).permit(*user_attributes)
+    end
+
+    def update_params
+      updatable_fields = (user_attributes - [:password, :password_confirmation])
+
+      params.require(:user).permit(*updatable_fields)
+    end
+
+    def user_attributes
+      [
+        :last_name,
+        :first_name,
+        :email,
+        :password,
+        :password_confirmation,
+        :roles_mask
+      ]
+    end
+
+    def update_password_params
+      params.require(:user).permit(:current_password, :password, :password_confirmation)
+    end
+
+    def reset_password_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
   end
 end
