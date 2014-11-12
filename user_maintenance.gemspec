@@ -21,5 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '3.4.1'
   s.add_dependency 'role_model', '~> 0.8.1'
   s.add_dependency 'cancancan', '~> 1.9.2'
+
   s.add_dependency 'haml-rails', '~> 0.5.3'
+  s.add_dependency 'simple_form', '~> 3.1.0.rc2'
 end
