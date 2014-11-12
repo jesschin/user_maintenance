@@ -4,13 +4,13 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '46a78451af636c5cd7208d3e3b982bf9469883915347f99a1132b20e48c988e59f5c40f0f59520228321f8d1c505bf77ed6647f46493466117583b7dbb9f79bf'
+  config.secret_key = '46a78451af636c5cd7208d3e3b982bf9469883915347f99a1132b20e48c988e59f5c40f0f59520228321f8d1c505bf77ed6647f46493466117583b7dbb9f79bf'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'noreply@user_maintenance.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -251,7 +251,7 @@ Devise.setup do |config|
   #     mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
-  config.router_name = :UserMaintenance
+  config.router_name = :user_maintenance
   config.parent_controller = 'UserMaintenance::ApplicationController'
   #
   # When using omniauth, Devise cannot automatically set Omniauth path,
