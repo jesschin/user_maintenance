@@ -5,7 +5,7 @@ module UserMaintenance
     check_authorization :unless => :devise_controller?
 
     rescue_from CanCan::AccessDenied do |exception|
-      redirect_to root_url, :alert => exception.message
+      redirect_to main_app.root_url, :alert => exception.message
     end
 
     private
@@ -14,7 +14,7 @@ module UserMaintenance
       if resource != resource.password_last_updated_by
         edit_password_profile_path
       else
-        request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+        request.env['omniauth.origin'] || stored_location_for(resource) || main_app.root_path
       end
     end
 
