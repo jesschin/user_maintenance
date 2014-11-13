@@ -16,6 +16,10 @@ module UserMaintenance
       super && self.enabled?
     end
 
+    def full_name
+      "#{first_name} #{last_name}"
+    end
+
     private
 
     def only_one_role_assigned
@@ -26,8 +30,5 @@ module UserMaintenance
       number & (number - 1) == 0
     end
 
-    def full_name
-      "#{first_name} #{last_name}"
-    end
   end
 end
