@@ -1,6 +1,11 @@
-Welcome to Test App
+%h2 Welcome to the test application for user_maintenance Rails engine
 
 - if user_signed_in?
   %h3
-    = "Hello #{current_user.email}!"
-  = link_to("Sign out", user_maintenance.destroy_user_session_path, :method => :delete)
+    = "You are signed in as #{current_user.email}!"
+  %ul
+    %li= link_to("Users", user_maintenance.users_path)
+    %li= link_to("Profile", user_maintenance.profile_path)
+    %li= link_to("Sign out", user_maintenance.destroy_user_session_path, :method => :delete)
+- else
+  = link_to('Sign in', user_maintenance.new_user_session_path)
