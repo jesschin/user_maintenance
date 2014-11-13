@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "users/index", :type => :view do
+RSpec.describe "user_maintenance/users/index", :type => :view do
   before(:each) do
+
     assign(:users, [
-      User.create!(),
-      User.create!()
+      create(:admin),
+      create(:user)
     ])
   end
 

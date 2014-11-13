@@ -1,8 +1,10 @@
 require 'rails_helper'
+include UserMaintenance::Engine.routes.url_helpers
 
-RSpec.describe "users/new", :type => :view do
+RSpec.describe "user_maintenance/users/new", :type => :view do
   before(:each) do
-    assign(:user, User.new())
+    sign_in_as_admin
+    assign(:user, UserMaintenance::User.new())
   end
 
   it "renders new user form" do

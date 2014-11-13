@@ -1,8 +1,10 @@
 require 'rails_helper'
+include UserMaintenance::Engine.routes.url_helpers
 
-RSpec.describe "users/edit", :type => :view do
+RSpec.describe "user_maintenance/users/edit", :type => :view do
   before(:each) do
-    @user = assign(:user, User.create!())
+    sign_in_as_admin
+    @user = assign(:user, create(:user))
   end
 
   it "renders the edit user form" do
