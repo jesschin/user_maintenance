@@ -14,7 +14,7 @@ In your Rails project:
 - Add user_maintenance to the Gemfile:
     `gem 'user_maintenance', :path => '/path/to/user_maintenance'`
 - Run `bundle install`
-- Edit config/routes.rb and add this line:    
+- Edit config/routes.rb and add this line:
     `mount UserMaintenance::Engine => "/"`
 - The engine contains migrations for the `users` table which needed to be created in the application's database. To copy these migrations:
     `rake user_maintenance:install:migrations`
@@ -25,15 +25,19 @@ In your Rails project:
 The engine can also migrate the view files for customization. To copy them to the parent application:
 
     rails generate user_maintenance:views
-    
+
 
 # Customizing the user controllers
 The engine can also migrate the `UserController` for customization. To copy them to the parent application:
 
     rails generate user_maintenance:controllers
-    
+
 # User Management routes
 You can view the routes via: `rake routes`. The User management is under the `/admin/users` scope while profile management is under the `/profiles` scope.
-    
-    
+
+# Test Application
+You can run a sample application with the engine within the project:
+
+- Go to `spec/test_app`
+- Run `rails server`
 
