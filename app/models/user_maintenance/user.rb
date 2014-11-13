@@ -12,6 +12,12 @@ module UserMaintenance
     validates :roles_mask, :first_name, :last_name, :presence => true
     validate :only_one_role_assigned
 
+    def self.valid_roles_map
+      valid_roles.map do |role|
+        [role.to_s.titleize, self.mask_for(role)]
+      end
+    end
+
     def active_for_authentication?
       super && self.enabled?
     end

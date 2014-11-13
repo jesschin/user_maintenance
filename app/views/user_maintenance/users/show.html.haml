@@ -1,6 +1,33 @@
-%p#notice= notice
+%dl
+  %dt First name:
+  %dd
+    = @user.first_name
 
+%dl
+  %dt Last name:
+  %dd
+    = @user.last_name
+%dl
+  %dt Email:
+  %dd
+    = mail_to @user.email
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+%dl
+  %dt Role:
+  %dd
+    - @user.roles.each do |role|
+      = role.to_s.humanize
+      %br
+
+- if can? :enable, @user
+  = link_to("#{(@user.enabled? ? 'Disable' : 'Enable')}", user_enable_path(@user), :method => :put)
+- if can? :update_profile, @user
+  = link_to 'Edit', edit_profile_path
+- elsif can? :update_role, @user
+  = link_to 'Edit', edit_user_path(@user)
+- if can? :reset_password, @user
+  = link_to 'Reset password', user_reset_password_path(@user)
+- elsif can? :edit_password, @user
+  = link_to 'Change password', edit_password_profile_path
+- if can? :read, UserMaintenance::User
+  = link_to 'Back', users_path

@@ -1,7 +1,2 @@
-%h1 Editing user
-
-= render 'form'
-
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path
+= simple_form_for @user, :url => (can? :update_profile, @user) ? profile_path : user_path(@user), :html => { :class => 'form' } do |form|
+  = render 'form', :form => form, :cancel_url => (can? :update_profile, @user) ? profile_path : user_path(@user)

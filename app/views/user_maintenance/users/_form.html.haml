@@ -1,10 +1,15 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .actions
-    = f.submit 'Save'
+- if can?(:create, @user) || can?(:update_profile, @user)
+  = form.input :email
+  = form.input :last_name
+  = form.input :first_name
+- if can? :create, @user
+  = form.input :password, :as => :password
+  = form.input :password_confirmation, :as => :password
+- if can? :update_role, @user
+  = form.input :roles_mask, :label => 'Role', :collection => UserMaintenance::User.valid_roles_map, :include_blank => false
+- if can? :update_profile, @user
+  = form.button :submit, 'Update Profile'
+  = link_to 'Cancel', profile_path
+- else
+  = form.button :submit
+  = link_to 'Cancel', cancel_url

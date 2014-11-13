@@ -1,5 +1,6 @@
 %h1 New user
 
-= render 'form'
+= simple_form_for @user, :url => users_path, :html => { :class => 'form' } do |form|
+  = render 'form', :form => form, :cancel_url => users_path
 
 = link_to 'Back', users_path
