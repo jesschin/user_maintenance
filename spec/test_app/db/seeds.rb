@@ -1,4 +1,4 @@
-admin = UserMaintenance::User.create(:email => 'admin@csi.com',
+admin = UserMaintenance::User.create(:email => 'admin@sample.com',
                     :password => 'password',
                     :password_confirmation => 'password',
                     :first_name => 'Admin',
@@ -7,7 +7,7 @@ admin = UserMaintenance::User.create(:email => 'admin@csi.com',
                     :enabled => true)
 admin.update(:password_last_updated_by => admin)
 
-user = UserMaintenance::User.create(:email => 'user@csi.com',
+user = UserMaintenance::User.create(:email => 'user@sample.com',
                     :password => 'password',
                     :password_confirmation => 'password',
                     :first_name => 'User',
