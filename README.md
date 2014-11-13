@@ -1,4 +1,4 @@
-## User Maintenance Rails Engine
+# User Maintenance Rails Engine
 
 This is a Rails engine that provides user management, security and authentication to a Rails Application. It uses the Devise gem with a few custom features:
 
@@ -8,7 +8,7 @@ This is a Rails engine that provides user management, security and authenticatio
 - Admin users can access the user module to enable or disable users
 - Admin users can access the user module to reset the password of users
 
-# Installation
+## Installation
 In your Rails project:
 
 - Add user_maintenance to the Gemfile:
@@ -21,21 +21,21 @@ In your Rails project:
     - If you want to run migrations only from the engine, specify the scope:
         `rake db:migrate SCOPE=user_maintenance`
 
-# Customizing the user views
+## Customizing the user views
 The engine can also migrate the view files for customization. To copy them to the parent application:
 
     rails generate user_maintenance:views
 
 
-# Customizing the user controllers
+## Customizing the user controllers
 The engine can also migrate the `UserController` for customization. To copy them to the parent application:
 
     rails generate user_maintenance:controllers
 
-# User Management routes
+## User Management routes
 You can view the routes via: `rake routes`. The User management is under the `/admin/users` scope while profile management is under the `/profiles` scope.
 
-# Test Application
+## Test Application
 You can run a sample application with the engine within the project:
 
 - Go to `spec/test_app`
