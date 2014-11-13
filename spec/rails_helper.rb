@@ -20,7 +20,7 @@ require 'shoulda/matchers'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
+ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')
 Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
 # Checks for pending migrations before tests are run.
@@ -52,5 +52,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :view
   config.include FactoryGirl::Syntax::Methods
+  config.include HelperStubs
+  config.include UserMaintenance::Engine.routes.url_helpers, :type => :controller
+  config.include Rails.application.routes.url_helpers, :type => :controller
 end
