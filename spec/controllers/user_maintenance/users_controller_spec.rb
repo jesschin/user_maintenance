@@ -2,12 +2,15 @@ require 'rails_helper'
 
 module UserMaintenance
   RSpec.describe UsersController, :type => :controller do
+    before do
+      @routes = UserMaintenance::Engine::routes
+    end
 
     describe 'GET #index' do
       before do
         sign_in_as_admin
         5.times { create :user }
-        get :index, :use_route => :user_maintenance
+        get :index
       end
 
       it { expect(response).to render_template(:index) }
@@ -19,7 +22,7 @@ module UserMaintenance
       before do
         sign_in_as_admin
         @user = create :user
-        get :show, :id => @user.id, :use_route => :user_maintenance
+        get :show, :id => @user.id
       end
 
       it { expect(:user).not_to be_nil }
@@ -29,7 +32,7 @@ module UserMaintenance
     describe 'POST #create' do
       before do
         sign_in_as_admin
-        post :create, :user => attributes_for(:user), :use_route => :user_maintenance
+        post :create, :user => attributes_for(:user)
       end
 
       it { expect(response).to redirect_to User.last }
@@ -45,7 +48,7 @@ module UserMaintenance
           :email => 'newuser@csi.com'
         }
 
-        put :update, :id => @user, :user => @new_attributes, :use_route => :user_maintenance
+        put :update, :id => @user, :user => @new_attributes
 
         @user.reload
       end
@@ -65,7 +68,7 @@ module UserMaintenance
           :password_confirmation => 'new_password'
         }
 
-        patch :update_password, :id => @user, :user => @new_attributes, :use_route => :user_maintenance
+        patch :update_password, :id => @user, :user => @new_attributes
       end
 
       it { expect(response).to redirect_to root_path }
