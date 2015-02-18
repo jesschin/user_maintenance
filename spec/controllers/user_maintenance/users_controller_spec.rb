@@ -38,7 +38,7 @@ module UserMaintenance
     describe 'PUT #update' do
       before do
         sign_in_as_admin
-        @user = User.first
+        @user = User.find_by(:email => attributes_for(:admin)[:email])
         @new_attributes = {
           :last_name => 'Last name',
           :first_name => 'First name',
