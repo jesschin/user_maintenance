@@ -16,7 +16,6 @@ module UserMaintenance
     end
 
     def create
-      @user = UserMaintenance::User.new(create_params)
       @user.password_last_updated_by = current_user
 
       if @user.save
@@ -41,9 +40,6 @@ module UserMaintenance
     end
 
     def enable
-      @user = UserMaintenance::User.find(params[:user_id])
-      authorize! :enable, @user
-
       if @user.update(:enabled => !@user.enabled)
         redirect_to users_path
       else
@@ -66,13 +62,9 @@ module UserMaintenance
     end
 
     def resetting_password
-      @user = UserMaintenance::User.find(params[:user_id])
-      authorize! :resetting_password, @user
     end
 
     def reset_password
-      @user = UserMaintenance::User.find(params[:user_id])
-      authorize! :reset_password, @user
       @user.password_last_updated_by = current_user
 
       if @user.update_attributes(reset_password_params)

@@ -41,7 +41,7 @@ module UserMaintenance
       end
 
       it "routes to #update_password" do
-        expect(:put => update_password_profile_path).to route_to(:controller => 'user_maintenance/users',
+        expect(:patch => update_password_profile_path).to route_to(:controller => 'user_maintenance/users',
                                                :action => 'update_password')
       end
 
@@ -56,23 +56,23 @@ module UserMaintenance
       end
 
       it "routes to profile #update" do
-        expect(:put => profile_path).to route_to(:controller => 'user_maintenance/users',
+        expect(:patch => profile_path).to route_to(:controller => 'user_maintenance/users',
                                                :action => 'update')
       end
 
       it "routes to #resetting_password" do
-        expect(:get => user_reset_password_path(1)).to route_to(:controller => 'user_maintenance/users',
-                                               :action => 'resetting_password', :user_id => '1')
+        expect(:get => reset_password_user_path(1)).to route_to(:controller => 'user_maintenance/users',
+                                               :action => 'resetting_password', :id => '1')
       end
 
       it "routes to #resetting_password" do
-        expect(:put => user_reset_password_path(1)).to route_to(:controller => 'user_maintenance/users',
-                                               :action => 'reset_password', :user_id => '1')
+        expect(:patch => reset_password_user_path(1)).to route_to(:controller => 'user_maintenance/users',
+                                               :action => 'reset_password', :id => '1')
       end
 
       it "routes to #enable" do
-        expect(:put => user_enable_path(1)).to route_to(:controller => 'user_maintenance/users',
-                                               :action => 'enable', :user_id => '1')
+        expect(:patch => enable_user_path(1)).to route_to(:controller => 'user_maintenance/users',
+                                               :action => 'enable', :id => '1')
       end
 
     end

@@ -20,14 +20,14 @@
       %br
 
 - if can? :enable, @user
-  = link_to("#{(@user.enabled? ? 'Disable' : 'Enable')}", user_enable_path(@user), :method => :put)
+  = link_to("#{(@user.enabled? ? 'Disable' : 'Enable')}", enable_user_path(@user), :method => :put)
 - if can? :update_profile, @user
   = link_to 'Edit', edit_profile_path
 - elsif can? :update_role, @user
   = link_to 'Edit', edit_user_path(@user)
 - if can? :reset_password, @user
-  = link_to 'Reset password', user_reset_password_path(@user)
+  = link_to 'Reset password', reset_password_user_path(@user)
 - elsif can? :edit_password, @user
   = link_to 'Change password', edit_password_profile_path
-- if can? :read, UserMaintenance::User
+- if cannot? :update_profile, @user
   = link_to 'Back', users_path

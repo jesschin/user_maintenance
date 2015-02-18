@@ -4,14 +4,16 @@ UserMaintenance::Engine.routes.draw do
 
   resource :user, :as => :profile, :path => :profile, :only => [:show, :edit, :update] do
     get 'edit_password'
-    put 'update_password'
+    patch 'update_password'
   end
 
   scope '/admin', :except => :destroy do
     resources :users do
-      get 'reset_password' => 'users#resetting_password'
-      put 'reset_password' => 'users#reset_password'
-      put 'enable'
+      member do
+        get 'reset_password' => 'users#resetting_password'
+        patch 'reset_password' => 'users#reset_password'
+        patch 'enable'
+      end
     end
   end
 

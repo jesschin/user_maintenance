@@ -48,7 +48,7 @@ module UserMaintenance
           :email => 'newuser@csi.com'
         }
 
-        put :update, :id => @user, :user => @new_attributes
+        patch :update, :id => @user, :user => @new_attributes
 
         @user.reload
       end
