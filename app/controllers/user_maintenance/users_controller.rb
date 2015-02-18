@@ -93,7 +93,7 @@ module UserMaintenance
         :email,
         :password,
         :password_confirmation,
-        :roles_mask
+        :role
       ]
     end
 

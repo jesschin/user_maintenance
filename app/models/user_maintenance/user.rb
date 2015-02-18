@@ -4,12 +4,12 @@ module UserMaintenance
 
     devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-    roles_attribute :roles_mask
+    roles_attribute :role
     roles :admin, :user
 
     belongs_to :password_last_updated_by, :class => UserMaintenance::User, :foreign_key => :password_last_updated_by_user_id
 
-    validates :roles_mask, :first_name, :last_name, :presence => true
+    validates :role, :first_name, :last_name, :presence => true
     validate :only_one_role_assigned
 
     def self.valid_roles_map
@@ -29,7 +29,7 @@ module UserMaintenance
     private
 
     def only_one_role_assigned
-      errors.add(:roles_mask, 'can select only one') if roles_mask && !power_of_two?(roles_mask)
+      errors.add(:role, :equal_to) if role && !power_of_two?(role)
     end
 
     def power_of_two?(number)

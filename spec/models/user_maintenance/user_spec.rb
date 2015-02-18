@@ -8,7 +8,7 @@ module UserMaintenance
 
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
-    it { should validate_presence_of(:roles_mask) }
+    it { should validate_presence_of(:role) }
 
     it "returns the user's full name as a string" do
       user = create(:user, :first_name => 'John', :last_name => 'Doe')

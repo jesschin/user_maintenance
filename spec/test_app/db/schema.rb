@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20141111050937) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "roles_mask"
+    t.integer  "role"
     t.boolean  "enabled",                          default: true
     t.integer  "password_last_updated_by_user_id"
     t.datetime "deleted_at"

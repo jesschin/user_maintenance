@@ -6,7 +6,7 @@
   = form.input :password, :as => :password
   = form.input :password_confirmation, :as => :password
 - if can? :update_role, @user
-  = form.input :roles_mask, :label => 'Role', :collection => UserMaintenance::User.valid_roles_map, :include_blank => false
+  = form.input :role, :collection => UserMaintenance::User.valid_roles_map, :include_blank => false
 - if can? :update_profile, @user
   = form.button :submit, 'Update Profile'
   = link_to 'Cancel', profile_path
